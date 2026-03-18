@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blueandplay Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      padding: 12px;
+      background: #020617;
+      font-weight: bold;
+      font-size: 18px;
+      color: #38bdf8;
+      text-align: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      resize: none;
+      border: none;
+      outline: none;
+      padding: 15px;
+      font-family: monospace;
+      font-size: 14px;
+      background: #020617;
+      color: #38bdf8;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      background: #38bdf8;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+
+<header>Blueandplay Code</header>
+
+<textarea id="code" placeholder="Paste your HTML here..."></textarea>
+<button onclick="runCode()">Run Code</button>
+<iframe id="preview" sandbox="allow-scripts"></iframe>
+
+<script>
+function runCode() {
+  const code = document.getElementById("code").value;
+  const iframe = document.getElementById("preview");
+
+  iframe.src = "about:blank";
+
+  iframe.onload = () => {
+    const doc = iframe.contentDocument || iframe.contentWindow.document;
+    doc.open();
+    doc.write(code);
+    doc.close();
+  };
+}
+</script>
+
+</body>
+</html>
