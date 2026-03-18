@@ -61,6 +61,7 @@
 
 <textarea id="code" placeholder="Paste your HTML here..."></textarea>
 <button onclick="runCode()">Run Code</button>
+
 <iframe id="preview" sandbox="allow-scripts"></iframe>
 
 <script>
@@ -68,14 +69,8 @@ function runCode() {
   const code = document.getElementById("code").value;
   const iframe = document.getElementById("preview");
 
-  iframe.src = "about:blank";
-
-  iframe.onload = () => {
-    const doc = iframe.contentDocument || iframe.contentWindow.document;
-    doc.open();
-    doc.write(code);
-    doc.close();
-  };
+  // Directly inject HTML into iframe
+  iframe.srcdoc = code;
 }
 </script>
 
